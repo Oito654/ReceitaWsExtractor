@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.Infra", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.WebApi", "ReceitaWsExtractor.WebApi\ReceitaWsExtractor.WebApi.csproj", "{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.HttpClient", "ReceitaWsExtractor.HttpClient\ReceitaWsExtractor.HttpClient.csproj", "{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

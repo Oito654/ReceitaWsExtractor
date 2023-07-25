@@ -19,10 +19,6 @@ public class ClientRepository : IClientRepository
     {
         return _context.Client.Where(c => c.Id == id).FirstOrDefault();
     }
-    public async Task<ICollection<Client>?> GetAll()
-    {
-        return await _context.Client.ToListAsync();
-    }
     public async Task AddToken(string token, Client client)
     {
         var bearerToken = new ClientToken(client.Id, token, true);
@@ -34,16 +30,6 @@ public class ClientRepository : IClientRepository
     {
         client.Token.IsValid = false;
         await _context.SaveChangesAsync();
-    }
-    public async Task Update(Client client)
-    {
-        _context.Client.Update(client);
-        await _context.SaveChangesAsync();
-    }
-    public async Task<IEnumerable<Order?>> GetAllClientOrders(Guid id)
-    {
-        var client = await _context.Client.FindAsync(id);
-        return client.Orders;
     }
     #endregion
 
@@ -61,7 +47,7 @@ public class ClientRepository : IClientRepository
 
         return tag;
     }
-    public async Task<ICollection<Order>?> GetAllOrdersClient(Guid clientId)
+    public async Task<ICollection<Order>> GetAllOrdersClient(Guid clientId)
     {
         var client = await _context.Client.FindAsync(clientId);
         return client.Orders;
