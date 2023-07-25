@@ -11,4 +11,5 @@ public class Client : IdentityUser<Guid>
     public DateTime CreatedIn { get; set; }
     public DateTime? UpdatedIn { get; set; }
     public ICollection<Order> Orders { get; set; }
+    public ClientToken Token { get; set; }
 }
