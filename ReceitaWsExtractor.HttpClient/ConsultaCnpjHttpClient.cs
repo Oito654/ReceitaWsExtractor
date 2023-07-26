@@ -10,16 +10,16 @@ public class ConsultaCnpjHttpClient : HttpClientBase, IConsultaCnpjHttpClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    private ConsultaCnpjHttpClient() : base()
-    {
-        throw new ArgumentNullException(nameof(_httpClientFactory));
-    }
-
     public ConsultaCnpjHttpClient(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory
            ?? throw new ArgumentNullException(nameof(httpClientFactory));
 
+    }
+
+    private ConsultaCnpjHttpClient() : base()
+    {
+        throw new ArgumentNullException(nameof(_httpClientFactory));
     }
 
     public async Task<string> GetCnpjDataAsync(string cnpj)

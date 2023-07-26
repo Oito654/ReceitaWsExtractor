@@ -10,6 +10,6 @@ public class Client : IdentityUser<Guid>
     public override string Email { get; set; } = string.Empty;
     public DateTime CreatedIn { get; set; }
     public DateTime? UpdatedIn { get; set; }
-    public ICollection<Order> Orders { get; set; }
-    public ClientToken Token { get; set; }
+    public ICollection<Order>? Orders { get; set; }
+    public ClientToken? Token { get; set; }
 }

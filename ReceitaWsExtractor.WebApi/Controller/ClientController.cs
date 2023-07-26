@@ -37,7 +37,7 @@ public class ClientController : ControllerBase
     [HttpPost]
     [Route("register")]
     [AllowAnonymous]
-    public async Task<IActionResult> Register([FromForm] InUser user)
+    public async Task<IActionResult> Register([FromBody] InUser user)
     {
         try
         {
@@ -46,7 +46,7 @@ public class ClientController : ControllerBase
                 return new BadRequestObjectResult(new { Message = "User Registration Failed" });
             }
 
-            var identityUser = new Client() { Email = user.Email, Name = user.Name, Surname = user.Surname };
+            var identityUser = new Client() { UserName = $"{user.Name}.{user.Surname}", Email = user.Email, Name = user.Name, Surname = user.Surname };
             var result = await _userManager.CreateAsync(identityUser, user.Password);
             if (!result.Succeeded)
             {
@@ -61,7 +61,7 @@ public class ClientController : ControllerBase
                 return new BadRequestObjectResult(new { Message = errorMessage, Errors = dictionary });
             }
 
-            return Ok(new { Message = "User Reigstration Successful" });
+            return Ok(new { Message = "User Reigistration Successful" });
         }
         catch (Exception ex)
         {
