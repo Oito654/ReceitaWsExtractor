@@ -46,7 +46,7 @@ public class ClientController : ControllerBase
                 return new BadRequestObjectResult(new { Message = "User Registration Failed" });
             }
 
-            var identityUser = new Client() { UserName = $"{user.Name}.{user.Surname}", Email = user.Email, Name = user.Name, Surname = user.Surname };
+            var identityUser = new Client() { UserName = $"{user.Name}.{user.Surname}", Email = user.Email, Name = user.Name, Surname = user.Surname, CreatedIn = DateTime.Now };
             var result = await _userManager.CreateAsync(identityUser, user.Password);
             if (!result.Succeeded)
             {
@@ -96,7 +96,7 @@ public class ClientController : ControllerBase
 
             await _mediator.Send(command);
 
-            return Ok(new { Token = token, Message = "Success" });
+            return Ok(new { Token = token, Id = identityUser.Id, Message = "Success" });
         }
         catch (Exception ex)
         {
@@ -112,6 +112,12 @@ public class ClientController : ControllerBase
         {
             var accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
             var client = await _userManager.FindByIdAsync(createOrder.ClientId.ToString());
+
+            if (client == null)
+            {
+                return NotFound("Client doesn't exist");
+            }
+
             var token = client.Token;
 
             if (token.IsValid == false || token.Token != accessToken)
@@ -135,12 +141,18 @@ public class ClientController : ControllerBase
 
     [HttpPut("update-client")]
     [Authorize]
-    public async Task<IActionResult> UpdateClient([FromForm]UpdateCommand updateClientCommand)
+    public async Task<IActionResult> UpdateClient([FromBody]UpdateCommand updateClientCommand)
     {
         try
         {
             var accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
             var client = await _userManager.FindByIdAsync(updateClientCommand.Id.ToString());
+
+            if (client == null)
+            {
+                return NotFound("Client doesn't exist");
+            }
+
             var token = client.Token;
 
             if (token.IsValid == false || token.Token != accessToken)
@@ -211,6 +223,12 @@ public class ClientController : ControllerBase
         {
             var accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
             var client = await _userManager.FindByIdAsync(id.ToString());
+
+            if(client == null)
+            {
+                return NotFound("Client doesn't exist");
+            }
+
             var token = client.Token;
 
             if (token.IsValid == false || token.Token != accessToken)
@@ -236,12 +254,18 @@ public class ClientController : ControllerBase
 
     [HttpGet("get-order")]
     [Authorize]
-    public async Task<IActionResult> GetOrder([FromQuery] Guid clientId, Guid orderId)
+    public async Task<IActionResult> GetOrder([FromQuery] GetOrderQuery query)
     {
         try
         {
             var accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
-            var client = await _userManager.FindByIdAsync(clientId.ToString());
+            var client = await _userManager.FindByIdAsync(query.ClientId.ToString());
+
+            if (client == null)
+            {
+                return NotFound("Client doesn't exist");
+            }
+
             var token = client.Token;
 
             if (token.IsValid == false || token.Token != accessToken)
@@ -249,7 +273,7 @@ public class ClientController : ControllerBase
                 return Unauthorized("Error 401 Unauthorized. Token is Invalid");
             }
 
-            var result = await _mediator.Send(new GetOrderQuery());
+            var result = await _mediator.Send(query);
 
             return Ok(result);
         }
@@ -261,12 +285,18 @@ public class ClientController : ControllerBase
 
     [HttpGet("get-client-all-orders")]
     [Authorize]
-    public async Task<IActionResult> GetAllClientOrders([FromQuery] Guid clientId, Guid orderId)
+    public async Task<IActionResult> GetAllClientOrders([FromQuery] GetAllOrdersClientQuery query)
     {
         try
         {
             var accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
-            var client = await _userManager.FindByIdAsync(clientId.ToString());
+            var client = await _userManager.FindByIdAsync(query.Id.ToString());
+
+            if (client == null)
+            {
+                return NotFound("Client doesn't exist");
+            }
+
             var token = client.Token;
 
             if (token.IsValid == false || token.Token != accessToken)
@@ -274,7 +304,7 @@ public class ClientController : ControllerBase
                 return Unauthorized("Error 401 Unauthorized. Token is Invalid");
             }
 
-            var result = await _mediator.Send(new GetAllOrdersClientQuery());
+            var result = await _mediator.Send(query);
 
             return Ok(result);
         }

@@ -3,25 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.Application", "ReceitaWsExtractor.Application\ReceitaWsExtractor.Application.csproj", "{7E9C64E8-04BB-4E94-A02A-A8A5EDFC689E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceitaWsExtractor.Application", "ReceitaWsExtractor.Application\ReceitaWsExtractor.Application.csproj", "{7E9C64E8-04BB-4E94-A02A-A8A5EDFC689E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.CrossCutting", "ReceitaWsExtractor.CrossCutting\ReceitaWsExtractor.CrossCutting.csproj", "{D585E928-2D62-424B-812E-7E5C577BBA98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceitaWsExtractor.CrossCutting", "ReceitaWsExtractor.CrossCutting\ReceitaWsExtractor.CrossCutting.csproj", "{D585E928-2D62-424B-812E-7E5C577BBA98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.Domain", "ReceitaWsExtractor.Domain\ReceitaWsExtractor.Domain.csproj", "{7CBCD760-987F-44AE-B3A7-FB76B6AFCEDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceitaWsExtractor.Domain", "ReceitaWsExtractor.Domain\ReceitaWsExtractor.Domain.csproj", "{7CBCD760-987F-44AE-B3A7-FB76B6AFCEDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.Infra", "ReceitaWsExtractor.Infra\ReceitaWsExtractor.Infra.csproj", "{FE0E3941-972E-4879-A8F6-0535CFACE1E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceitaWsExtractor.Infra", "ReceitaWsExtractor.Infra\ReceitaWsExtractor.Infra.csproj", "{FE0E3941-972E-4879-A8F6-0535CFACE1E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.WebApi", "ReceitaWsExtractor.WebApi\ReceitaWsExtractor.WebApi.csproj", "{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitaWsExtractor.HttpClient", "ReceitaWsExtractor.HttpClient\ReceitaWsExtractor.HttpClient.csproj", "{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceitaWsExtractor.WebApi", "ReceitaWsExtractor.WebApi\ReceitaWsExtractor.WebApi.csproj", "{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7E9C64E8-04BB-4E94-A02A-A8A5EDFC689E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,9 +39,11 @@ Global
 		{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC65855A-25F8-4A51-99B3-D2015ECF5BAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B01DBD8-F9F1-4E0A-803E-551E055FF71E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98FE35E2-6480-4342-9087-B09D7F5FDF2A}
 	EndGlobalSection
 EndGlobal

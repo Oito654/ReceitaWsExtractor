@@ -9,7 +9,6 @@ using ReceitaWsExtractor.Domain.Entities;
 using ReceitaWsExtractor.Infra.Context;
 using ReceitaWsExtractor.CrossCutting.IoC;
 using ReceitaWsExtractor.WebApi.Configuration;
-using ReceitaWsExtractor.HttpClient.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,7 +88,6 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddInfra(builder.Configuration);
 builder.Services.AddHttpClient();
-builder.Services.AddHttpClientReceitaWs();
 builder.Services.AddMediatR(typeof(GetAllClientsQuery).GetTypeInfo().Assembly);
 
 var app = builder.Build();

@@ -18,7 +18,6 @@
     <ProjectReference Include="..\ReceitaWsExtractor.Domain\ReceitaWsExtractor.Domain.csproj" />
     <ProjectReference Include="..\ReceitaWsExtractor.Infra\ReceitaWsExtractor.Infra.csproj" />
 	 <ProjectReference Include="..\ReceitaWsExtractor.CrossCutting\ReceitaWsExtractor.CrossCutting.csproj" />
-	 <ProjectReference Include="..\ReceitaWsExtractor.HttpClient\ReceitaWsExtractor.HttpClient.csproj" />
   </ItemGroup>
 
 </Project>

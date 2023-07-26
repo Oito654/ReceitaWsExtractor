@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using ReceitaWsExtractor.Application.HttpClient;
 using ReceitaWsExtractor.Domain.Entities;
 using ReceitaWsExtractor.Domain.Interfaces;
+using System.Net.Http.Headers;
 
 namespace ReceitaWsExtractor.Application.Commands;
 
@@ -14,10 +14,10 @@ public class CreateOrderCommand : IRequest<Order>
     {
         private readonly IClientRepository _repository;
         private readonly IMediator _mediator;
-        private readonly IConsultaCnpjHttpClient _consultaCnpj;
 
-        public CreateOrderCommandHandler(IClientRepository repository, IMediator mediator, IConsultaCnpjHttpClient consultaCnpj
-            )
+        static HttpClient client = new HttpClient();
+
+        public CreateOrderCommandHandler(IClientRepository repository, IMediator mediator            )
         {
             _repository = repository
                 ?? throw new ArgumentNullException(nameof(repository)); ;
@@ -25,15 +25,26 @@ public class CreateOrderCommand : IRequest<Order>
             _mediator = mediator
                 ?? throw new ArgumentNullException(nameof(mediator));
 
-            _consultaCnpj = consultaCnpj
-                ?? throw new ArgumentNullException(nameof(consultaCnpj));
         }
 
         public async Task<Order> Handle(CreateOrderCommand createOrderCommand, CancellationToken cancellationToken)
         {
             var cnpj = createOrderCommand.Cnpj;
 
-            var result = await _consultaCnpj.GetCnpjDataAsync(cnpj);
+            client.BaseAddress = new Uri($"https://receitaws.com.br/v1/cnpj");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var path = $"{client.BaseAddress}/{createOrderCommand.Cnpj}";
+            var response = await client.GetAsync(path);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.Content.ToString());
+            }
+            
+            var result = await response.Content.ReadAsStringAsync();
 
             var order = new Order(Guid.NewGuid(), cnpj, result);
 
