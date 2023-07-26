@@ -16,7 +16,8 @@ public class CreateOrderCommand : IRequest<Order>
         private readonly IMediator _mediator;
         private readonly IConsultaCnpjHttpClient _consultaCnpj;
 
-        public CreateOrderCommandHandler(IClientRepository repository, IMediator mediator, IConsultaCnpjHttpClient consultaCnpj)
+        public CreateOrderCommandHandler(IClientRepository repository, IMediator mediator, IConsultaCnpjHttpClient consultaCnpj
+            )
         {
             _repository = repository
                 ?? throw new ArgumentNullException(nameof(repository)); ;

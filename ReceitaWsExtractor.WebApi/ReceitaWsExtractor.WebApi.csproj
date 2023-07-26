@@ -1,9 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReceitaWsExtractor.Application\ReceitaWsExtractor.Application.csproj" />
+    <ProjectReference Include="..\ReceitaWsExtractor.Domain\ReceitaWsExtractor.Domain.csproj" />
+    <ProjectReference Include="..\ReceitaWsExtractor.Infra\ReceitaWsExtractor.Infra.csproj" />
+	 <ProjectReference Include="..\ReceitaWsExtractor.CrossCutting\ReceitaWsExtractor.CrossCutting.csproj" />
+	 <ProjectReference Include="..\ReceitaWsExtractor.HttpClient\ReceitaWsExtractor.HttpClient.csproj" />
+  </ItemGroup>
 
 </Project>

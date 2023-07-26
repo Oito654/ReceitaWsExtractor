@@ -15,6 +15,10 @@ public class ClientRepository : IClientRepository
     }
 
     #region Client
+    public async Task<ICollection<Client>?> GetAll()
+    {
+        return await _context.Client.ToListAsync();
+    }
     public async Task<Client> FindById(Guid id)
     {
         return _context.Client.Where(c => c.Id == id).FirstOrDefault();
@@ -29,6 +33,12 @@ public class ClientRepository : IClientRepository
     public async Task InvalidToken(Client client)
     {
         client.Token.IsValid = false;
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task Update(Client client)
+    {
+        _context.Client.Update(client);
         await _context.SaveChangesAsync();
     }
     #endregion

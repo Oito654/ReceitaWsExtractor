@@ -6,8 +6,8 @@ namespace ReceitaWsExtractor.HttpClient.Configuration;
 
 public static class ConfigureServiceExtensions
 {
-    public static IServiceCollection AddHttpClient(
-        this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddHttpClientReceitaWs(
+        this IServiceCollection services)
     {
         services.AddScoped<IConsultaCnpjHttpClient, ConsultaCnpjHttpClient>();
 

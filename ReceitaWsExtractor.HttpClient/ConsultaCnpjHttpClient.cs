@@ -9,27 +9,25 @@ namespace ReceitaWsExtractor.HttpClient;
 public class ConsultaCnpjHttpClient : HttpClientBase, IConsultaCnpjHttpClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly AppSettingOptions _options;
 
     private ConsultaCnpjHttpClient() : base()
     {
         throw new ArgumentNullException(nameof(_httpClientFactory));
-        throw new ArgumentNullException(nameof(_options));
     }
 
-    public ConsultaCnpjHttpClient(IHttpClientFactory httpClientFactory, AppSettingOptions options)
+    public ConsultaCnpjHttpClient(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory
            ?? throw new ArgumentNullException(nameof(httpClientFactory));
 
-        _options = options
-            ?? throw new ArgumentNullException(nameof(options));
     }
 
     public async Task<string> GetCnpjDataAsync(string cnpj)
     {
         dynamic details = new ExpandoObject();
-        details.route = $"{_options.BaseUrl}/cnpj/{cnpj}";
+
+        //Normalmente a BaseUrl seria armazenada dentro de uma variavél de ambiente ou do AppSetting.
+        details.route = $"https://receitaws.com.br/v1/cnpj/{cnpj}";
 
         try
         {
