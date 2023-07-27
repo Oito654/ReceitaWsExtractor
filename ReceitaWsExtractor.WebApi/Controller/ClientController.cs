@@ -252,6 +252,27 @@ public class ClientController : ControllerBase
 
     #region Get
 
+    [HttpGet("client-by-email")]
+    [Authorize]
+    public async Task<IActionResult> GetClientEmail([FromQuery] string email)
+    {
+        try
+        {
+            var client = await _userManager.FindByEmailAsync(email);
+
+            if(client == null)
+            {
+                return NotFound("Client doesn't exist");
+            }
+
+            return Ok(client);
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
     [HttpGet("get-order")]
     [Authorize]
     public async Task<IActionResult> GetOrder([FromQuery] GetOrderQuery query)

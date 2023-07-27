@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using ReceitaWsExtractor.Domain.Entities;
 using ReceitaWsExtractor.Domain.Interfaces;
+using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace ReceitaWsExtractor.Application.Commands;
@@ -31,7 +32,11 @@ public class CreateOrderCommand : IRequest<Order>
         {
             var cnpj = createOrderCommand.Cnpj;
 
-            client.BaseAddress = new Uri($"https://receitaws.com.br/v1/cnpj");
+            if (client.BaseAddress == null)
+            {
+                client.BaseAddress = new Uri($"https://receitaws.com.br/v1/cnpj");
+            }
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
